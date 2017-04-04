@@ -7,7 +7,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="<c:url value="/css/jquery-ui.css"/>" >
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/css/jquery-ui.css"/>">
 <script type="text/javascript" src="<c:url value="/js/jquery.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/js/jquery-ui.js"/>"></script>
 </head>
@@ -15,12 +16,13 @@
 	<c:import url="cabecalho.jsp" />
 	<h1>Adiciona Contatos</h1>
 	<hr />
-	<form action="adicionaContato">
+	<form action="mvc">
 		Nome: <input type="text" name="nome" /><br /> E-mail: <input
 			type="text" name="email" /><br /> Endereço: <input type="text"
 			name="endereco" /><br /> Data Nascimento:
 		<caelum:campoData id="dataNascimento" />
-		<br /> <input type="submit" value="Gravar" />
+		<input type="hidden" name="logica" value="AdicionaContatoLogic" /> <br />
+		<input type="submit" value="Adicionar" />
 	</form>
 	<c:import url="rodape.jsp" />
 </body>

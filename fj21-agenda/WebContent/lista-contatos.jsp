@@ -23,6 +23,7 @@
 			<th>Email</th>
 			<th>Endereco</th>
 			<th>Data de Nascimento</th>
+			<th><a href="mvc?logica=MostraContatoLogic">Adicionar contato</a></th>
 		</tr>
 
 		<!-- Percorre contatos montando as linhas da tabela -->
