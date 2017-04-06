@@ -19,7 +19,7 @@ public class MostraContatoLogic implements Logica {
 		//descobre se tem parametro
 		String TemParam = req.getParameter("id");
 		if (TemParam == null) {
-			return "adiciona-contato.jsp";
+			return "/WEB-INF/jsp/adiciona-contato.jsp";
 		} else {
 			long id = Long.parseLong(req.getParameter("id"));
 			String nome = req.getParameter("nome");
@@ -41,7 +41,7 @@ public class MostraContatoLogic implements Logica {
 			req.setAttribute("contato", contato);
 			req.setAttribute("dataNascimento", dataEmTexto);
 			System.out.println("passou do set attribute");
-			return "altera-contato.jsp";
+			return "/WEB-INF/jsp/altera-contato.jsp";
 		}
 	}
 
