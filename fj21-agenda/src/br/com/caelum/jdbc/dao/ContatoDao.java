@@ -19,8 +19,20 @@ public class ContatoDao {
 	// private Connection conPostgres;
 
 	public ContatoDao() {
-		this.connection = new ConnectionFactory().getConnection();
-		// this.conPostgres = new ConnectionPostgres().getConnection();
+
+		/**
+		 * Eu não sei porque é necessário utilizar um construtor sem argumentos
+		 * antes do dispache para a jsp, mas caso vc não tenha a pagina
+		 * simplesmente não abre. Tenha sempre um construtor sem argumentos
+		 * porque... sei lá JAVA é uma linguagem de fresco.
+		 * **/
+
+		System.out.println("Utilizando construtor sem argumentos...");
+	}
+
+	public ContatoDao(Connection connection) {
+		this.connection = connection;
+		System.out.println("Utilizando construtor com argumentos...2");
 	}
 
 	public void adiciona(Contato contato) {
@@ -41,12 +53,6 @@ public class ContatoDao {
 
 		} catch (SQLException e) {
 			throw new DAOException(e.getMessage(), e.getCause());
-		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				throw new DAOException(e.getMessage(), e.getCause());
-			}
 		}
 
 	}
@@ -75,7 +81,6 @@ public class ContatoDao {
 			}
 			rs.close();
 			stmt.close();
-			connection.close();
 			return contatos;
 		} catch (SQLException e) {
 			throw new DAOException(e.getMessage(), e.getCause());
@@ -108,7 +113,7 @@ public class ContatoDao {
 			}
 			rs.close();
 			stmt.close();
-			connection.close();
+
 			return contatos;
 		} catch (SQLException e) {
 			throw new DAOException(e.getMessage(), e.getCause());
@@ -142,13 +147,6 @@ public class ContatoDao {
 			return contato;
 		} catch (SQLException e) {
 			throw new DAOException(e.getMessage(), e.getCause());
-		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-
-				throw new DAOException(e.getMessage(), e.getCause());
-			}
 		}
 
 	}
@@ -162,12 +160,6 @@ public class ContatoDao {
 			stmt.close();
 		} catch (SQLException e) {
 			throw new DAOException(e.getMessage(), e.getCause());
-		} finally {
-			try {
-				this.connection.close();
-			} catch (SQLException e) {
-				throw new DAOException(e.getMessage(), e.getCause());
-			}
 		}
 	}
 
@@ -185,20 +177,14 @@ public class ContatoDao {
 			stmt.close();
 		} catch (SQLException e) {
 			throw new DAOException(e.getMessage(), e.getCause());
-		} finally {
-			try {
-				this.connection.close();
-			} catch (SQLException e) {
-				throw new DAOException(e.getMessage(), e.getCause());
-			}
 		}
 	}
 
 	/**
 	 * Methods of Postgres down here! The postgres have same specific things as:
 	 * 1- You cannot name columns with UpperCase 2- Date, time and timestamp in
-	 * postgres just accept with quotation marks
-	 * Attention! postgres was commented in order to doesn't need start postgres but is working well.
+	 * postgres just accept with quotation marks Attention! postgres was
+	 * commented in order to doesn't need start postgres but is working well.
 	 * **/
 
 	/**

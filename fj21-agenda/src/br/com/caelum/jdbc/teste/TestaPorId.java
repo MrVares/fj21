@@ -1,7 +1,9 @@
 package br.com.caelum.jdbc.teste;
 
+import java.sql.Connection;
 import java.text.SimpleDateFormat;
 
+import br.com.caelum.jdbc.ConnectionFactory;
 import br.com.caelum.jdbc.dao.ContatoDao;
 import br.com.caelum.jdbc.modelo.Contato;
 
@@ -11,7 +13,8 @@ public class TestaPorId {
 		Contato contato = new Contato();
 		contato.setId(1);
 
-		ContatoDao dao = new ContatoDao();
+		Connection connection = new ConnectionFactory().getConnection();
+		ContatoDao dao = new ContatoDao(connection);
 		Contato contatoR = dao.porId(contato);
 
 		System.out.println("Id: " + contatoR.getId());

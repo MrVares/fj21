@@ -1,8 +1,10 @@
 package br.com.caelum.jdbc.teste;
 
+import java.sql.Connection;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+import br.com.caelum.jdbc.ConnectionFactory;
 import br.com.caelum.jdbc.dao.ContatoDao;
 import br.com.caelum.jdbc.modelo.Contato;
 
@@ -12,7 +14,8 @@ public class TestaPorNome {
 		Contato contato = new Contato();
 		contato.setName("Caelum");
 
-		ContatoDao dao = new ContatoDao();
+		Connection connection = new ConnectionFactory().getConnection();
+		ContatoDao dao = new ContatoDao(connection);
 		List<Contato> contatos = dao.porNome(contato);
 
 		for (Contato contatoT : contatos) {
